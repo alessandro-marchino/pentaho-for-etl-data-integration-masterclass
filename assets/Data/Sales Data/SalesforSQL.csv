@@ -1,4 +1,4 @@
-﻿Order Line,Order ID,Order Date,Ship Date,Ship Mode,Customer ID,Product ID,Sales,Quantity,Discount,Profit
+Order Line,Order ID,Order Date,Ship Date,Ship Mode,Customer ID,Product ID,Sales,Quantity,Discount,Profit
 7973,CA-2017-166142,2020-01-01,2020-01-05,Standard Class,MM-17260,OFF-BI-10004094,26.55,3,0,13.01
 7974,CA-2017-166142,2020-01-01,2020-01-05,Standard Class,MM-17260,FUR-TA-10004607,310.44,3,0.3,-48.78
 7975,CA-2017-164378,2020-01-01,2020-01-04,Second Class,MM-18055,OFF-AR-10001177,6.56,2,0,1.9
