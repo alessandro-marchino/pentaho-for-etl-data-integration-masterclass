@@ -436,7 +436,7 @@
       <fields>
         <field>
           <variable_name>errorfile</variable_name>
-          <variable_value>/home/marchino/wsl_workspace/utility/udemy/pentaho-for-etl-data-integration-masterclass/SalesDatesIncorrect</variable_value>
+          <variable_value>/home/marchino/wsl_workspace/utility/udemy/pentaho-for-etl-data-integration-masterclass/output/SalesDatesIncorrect</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
       </fields>
@@ -522,6 +522,21 @@
       <yloc>304</yloc>
       <attributes_kjc/>
     </entry>
+    <entry>
+      <name>Write to log</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <attributes/>
+      <logmessage>Email would have been sent</logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>EMAIL</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>656</xloc>
+      <yloc>304</yloc>
+      <attributes_kjc/>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -581,6 +596,15 @@
     <hop>
       <from>Create a folder</from>
       <to>Move files</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Move files</from>
+      <to>Write to log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
