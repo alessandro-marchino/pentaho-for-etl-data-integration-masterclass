@@ -535,6 +535,11 @@
       <to>Select values 5</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Write to log</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Append streams</name>
@@ -1757,7 +1762,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>864</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1774,7 +1779,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Select values 4</send_true_to>
-    <send_false_to/>
+    <send_false_to>Write to log</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -1908,8 +1913,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1296</xloc>
-      <yloc>144</yloc>
+      <xloc>1200</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1939,8 +1944,76 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1408</xloc>
-      <yloc>144</yloc>
+      <xloc>1200</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>Reference of Product ID not found in Product Lookup</logmessage>
+    <fields>
+      <field>
+        <name>Order Line</name>
+      </field>
+      <field>
+        <name>Order ID</name>
+      </field>
+      <field>
+        <name>Order Date</name>
+      </field>
+      <field>
+        <name>Ship Date</name>
+      </field>
+      <field>
+        <name>Ship Mode</name>
+      </field>
+      <field>
+        <name>Customer ID</name>
+      </field>
+      <field>
+        <name>Product ID</name>
+      </field>
+      <field>
+        <name>Sales</name>
+      </field>
+      <field>
+        <name>Quantity</name>
+      </field>
+      <field>
+        <name>Discount</name>
+      </field>
+      <field>
+        <name>Profit</name>
+      </field>
+      <field>
+        <name>Product Name</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
