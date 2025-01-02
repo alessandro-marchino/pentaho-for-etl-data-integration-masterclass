@@ -920,7 +920,7 @@
     <append>N</append>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>/home/marchino/wsl_workspace/utility/udemy/pentaho-for-etl-data-integration-masterclass/output/SalesDatesIncorrect</name>
+      <name>${errorfile}</name>
       <extention>xls</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <create_parent_folder>N</create_parent_folder>
