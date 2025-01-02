@@ -547,7 +547,17 @@
     </hop>
     <hop>
       <from>Select values 5</from>
-      <to>Memory group by</to>
+      <to>Product lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Product lookup</from>
+      <to>Customer lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Customer lookup</from>
+      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1611,7 +1621,7 @@
     <name>Select values 5</name>
     <type>SelectValues</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -2156,8 +2166,8 @@
     </GUI>
   </step>
   <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
+    <name>Product lookup</name>
+    <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2166,18 +2176,163 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
+    <connection>salesDBConnection</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>public</schema>
+      <table>product</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
         <name>Product ID</name>
-      </field>
-    </group>
+        <field>product_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>surr_id</name>
+        <rename>s_prod_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1072</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Customer lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>salesDBConnection</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>public</schema>
+      <table>customer</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>Customer ID</name>
+        <field>customer_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>surr_id</name>
+        <rename>s_cust_id</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>salesDBConnection</connection>
+    <schema>public</schema>
+    <table>finalsales</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
       <field>
-        <aggregate>Sum of Sales</aggregate>
-        <subject>Sales</subject>
-        <type>SUM</type>
-        <valuefield/>
+        <column_name>order_line</column_name>
+        <stream_name>Order Line</stream_name>
+      </field>
+      <field>
+        <column_name>order_id</column_name>
+        <stream_name>Order ID</stream_name>
+      </field>
+      <field>
+        <column_name>order_date</column_name>
+        <stream_name>Order Date</stream_name>
+      </field>
+      <field>
+        <column_name>ship_date</column_name>
+        <stream_name>Ship Date</stream_name>
+      </field>
+      <field>
+        <column_name>ship_mode</column_name>
+        <stream_name>Ship Mode</stream_name>
+      </field>
+      <field>
+        <column_name>s_cust_id</column_name>
+        <stream_name>s_cust_id</stream_name>
+      </field>
+      <field>
+        <column_name>s_prod_id</column_name>
+        <stream_name>s_prod_id</stream_name>
+      </field>
+      <field>
+        <column_name>sales</column_name>
+        <stream_name>Sales</stream_name>
+      </field>
+      <field>
+        <column_name>quantity</column_name>
+        <stream_name>Quantity</stream_name>
+      </field>
+      <field>
+        <column_name>discount</column_name>
+        <stream_name>Discount</stream_name>
+      </field>
+      <field>
+        <column_name>profit</column_name>
+        <stream_name>Profit</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -2189,8 +2344,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1200</xloc>
-      <yloc>400</yloc>
+      <xloc>816</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
