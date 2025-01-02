@@ -564,17 +564,12 @@
     </hop>
     <hop>
       <from>Sorted merge 2</from>
+      <to>Number range</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Number range</from>
       <to>Memory group by</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Memory group by</from>
-      <to>Sort rows 6</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 6</from>
-      <to>Row denormaliser</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -2455,8 +2450,8 @@
     </GUI>
   </step>
   <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
+    <name>Number range</name>
+    <type>NumberRange</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2465,23 +2460,26 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>State</name>
-      </field>
-      <field>
-        <name>Segment</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>Number of customers</aggregate>
-        <subject>Customer ID</subject>
-        <type>COUNT_DISTINCT</type>
-        <valuefield/>
-      </field>
-    </fields>
+    <inputField>Age</inputField>
+    <outputField>Age Category</outputField>
+    <fallBackValue>unknown</fallBackValue>
+    <rules>
+      <rule>
+        <lower_bound>0.0</lower_bound>
+        <upper_bound>36.0</upper_bound>
+        <value>Young</value>
+      </rule>
+      <rule>
+        <lower_bound>36.0</lower_bound>
+        <upper_bound>61.0</upper_bound>
+        <value>Middle Aged</value>
+      </rule>
+      <rule>
+        <lower_bound>61.0</lower_bound>
+        <upper_bound>1.7976931348623157E308</upper_bound>
+        <value>Senior Citizen</value>
+      </rule>
+    </rules>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -2497,8 +2495,8 @@
     </GUI>
   </step>
   <step>
-    <name>Sort rows 6</name>
-    <type>SortRows</type>
+    <name>Memory group by</name>
+    <type>MemoryGroupBy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2507,29 +2505,18 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>Age Category</name>
+      </field>
+    </group>
     <fields>
       <field>
-        <name>State</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>Segment</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
+        <aggregate>Customers</aggregate>
+        <subject>Customer ID</subject>
+        <type>COUNT_DISTINCT</type>
+        <valuefield/>
       </field>
     </fields>
     <attributes/>
@@ -2542,81 +2529,6 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>656</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Row denormaliser</name>
-    <type>Denormaliser</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <key_field>Segment</key_field>
-    <group>
-      <field>
-        <name>State</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <field_name>Number of customers</field_name>
-        <key_value>Consumer</key_value>
-        <target_name>Consumer</target_name>
-        <target_type>Integer</target_type>
-        <target_format/>
-        <target_length>-1</target_length>
-        <target_precision>-1</target_precision>
-        <target_decimal_symbol/>
-        <target_grouping_symbol/>
-        <target_currency_symbol/>
-        <target_null_string/>
-        <target_aggregation_type>SUM</target_aggregation_type>
-      </field>
-      <field>
-        <field_name>Number of customers</field_name>
-        <key_value>Corporate</key_value>
-        <target_name>Corporate</target_name>
-        <target_type>Integer</target_type>
-        <target_format/>
-        <target_length>-1</target_length>
-        <target_precision>-1</target_precision>
-        <target_decimal_symbol/>
-        <target_grouping_symbol/>
-        <target_currency_symbol/>
-        <target_null_string/>
-        <target_aggregation_type>SUM</target_aggregation_type>
-      </field>
-      <field>
-        <field_name>Number of customers</field_name>
-        <key_value>Home Office</key_value>
-        <target_name>Home Office</target_name>
-        <target_type>Integer</target_type>
-        <target_format/>
-        <target_length>-1</target_length>
-        <target_precision>-1</target_precision>
-        <target_decimal_symbol/>
-        <target_grouping_symbol/>
-        <target_currency_symbol/>
-        <target_null_string/>
-        <target_aggregation_type>SUM</target_aggregation_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1184</xloc>
       <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
