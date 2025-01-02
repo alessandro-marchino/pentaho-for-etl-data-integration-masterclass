@@ -11,3 +11,10 @@ CREATE TABLE IF NOT EXISTS sales (
     discount NUMERIC,
     profit NUMERIC
 );
+
+CREATE TABLE IF NOT EXISTS science_class (
+    enrollment_no INT,
+    name VARCHAR,
+    science_marks INT
+);
+
