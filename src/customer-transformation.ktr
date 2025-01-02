@@ -2482,7 +2482,7 @@
     <schema>public</schema>
     <table>customer</table>
     <connection>salesDBConnection</connection>
-    <commit>100</commit>
+    <commit>1</commit>
     <cache_size>9999</cache_size>
     <replace>N</replace>
     <preloadCache>N</preloadCache>
