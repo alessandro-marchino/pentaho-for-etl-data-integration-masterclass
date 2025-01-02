@@ -435,6 +435,25 @@
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>salesDBConnection</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>postgres</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79a369ce93bcc9</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
       <from>JSON input</from>
@@ -464,6 +483,16 @@
     <hop>
       <from>Sorted merge</from>
       <to>Unique rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows</from>
+      <to>Add constants</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants</from>
+      <to>Dimension lookup/update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -880,6 +909,127 @@
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>effective_date</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>15/08/2020</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dimension lookup/update</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>product</table>
+    <connection>salesDBConnection</connection>
+    <commit>100</commit>
+    <update>Y</update>
+    <fields>
+      <key>
+        <name>Product_ID</name>
+        <lookup>product_id</lookup>
+      </key>
+      <date>
+        <name>effective_date</name>
+        <from>start_date</from>
+        <to>end_date</to>
+      </date>
+      <field>
+        <name>Category</name>
+        <lookup>category</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>Sub_Category</name>
+        <lookup>sub_category</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>Product_Name</name>
+        <lookup>product_name</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name/>
+        <lookup>current</lookup>
+        <update>LastVersion</update>
+      </field>
+      <field>
+        <name>effective_date</name>
+        <lookup>lastupdate</lookup>
+        <update>Update</update>
+      </field>
+      <return>
+        <name>surr_id</name>
+        <rename/>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+        <version>version</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>800</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
