@@ -436,6 +436,25 @@
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>salesDBConnection</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>postgres</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79a369ce93bcc9</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
       <from>Manual Input</from>
@@ -564,12 +583,12 @@
     </hop>
     <hop>
       <from>Sorted merge 2</from>
-      <to>Number range</to>
+      <to>Combination lookup/update</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Number range</from>
-      <to>Memory group by</to>
+      <from>Combination lookup/update</from>
+      <to>Update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -612,8 +631,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>960</xloc>
-      <yloc>480</yloc>
+      <xloc>976</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -657,8 +676,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>960</xloc>
-      <yloc>384</yloc>
+      <xloc>976</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -702,8 +721,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
-      <yloc>576</yloc>
+      <xloc>848</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -743,8 +762,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>480</yloc>
+      <xloc>1088</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -968,8 +987,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>208</yloc>
+      <xloc>128</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1010,8 +1029,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>304</yloc>
+      <xloc>880</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1235,8 +1254,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>496</yloc>
+      <xloc>128</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1460,8 +1479,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>304</yloc>
+      <xloc>128</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1643,8 +1662,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>400</yloc>
+      <xloc>128</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1730,8 +1749,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>192</yloc>
+      <xloc>880</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1889,8 +1908,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>112</yloc>
+      <xloc>128</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1928,8 +1947,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>304</yloc>
+      <xloc>752</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1967,8 +1986,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
-      <yloc>384</yloc>
+      <xloc>848</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2031,8 +2050,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>960</xloc>
-      <yloc>304</yloc>
+      <xloc>976</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2095,8 +2114,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>576</yloc>
+      <xloc>1088</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2137,8 +2156,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>112</yloc>
+      <xloc>288</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2179,8 +2198,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>208</yloc>
+      <xloc>288</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2221,8 +2240,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>304</yloc>
+      <xloc>288</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2263,8 +2282,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>400</yloc>
+      <xloc>288</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2305,8 +2324,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>496</yloc>
+      <xloc>288</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2336,8 +2355,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>304</yloc>
+      <xloc>448</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2367,8 +2386,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>960</xloc>
-      <yloc>576</yloc>
+      <xloc>976</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2402,8 +2421,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>304</yloc>
+      <xloc>544</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2444,14 +2463,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>304</yloc>
+      <xloc>640</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Number range</name>
-    <type>NumberRange</type>
+    <name>Combination lookup/update</name>
+    <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2460,65 +2479,28 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <inputField>Age</inputField>
-    <outputField>Age Category</outputField>
-    <fallBackValue>unknown</fallBackValue>
-    <rules>
-      <rule>
-        <lower_bound>0.0</lower_bound>
-        <upper_bound>36.0</upper_bound>
-        <value>Young</value>
-      </rule>
-      <rule>
-        <lower_bound>36.0</lower_bound>
-        <upper_bound>61.0</upper_bound>
-        <value>Middle Aged</value>
-      </rule>
-      <rule>
-        <lower_bound>61.0</lower_bound>
-        <upper_bound>1.7976931348623157E308</upper_bound>
-        <value>Senior Citizen</value>
-      </rule>
-    </rules>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>960</xloc>
-      <yloc>656</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>Age Category</name>
-      </field>
-    </group>
+    <schema>public</schema>
+    <table>customer</table>
+    <connection>salesDBConnection</connection>
+    <commit>100</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
     <fields>
-      <field>
-        <aggregate>Customers</aggregate>
-        <subject>Customer ID</subject>
-        <type>COUNT_DISTINCT</type>
-        <valuefield/>
-      </field>
+      <key>
+        <name>Customer ID</name>
+        <lookup>customer_id</lookup>
+      </key>
+      <return>
+        <name>surr_id</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
     </fields>
+    <sequence/>
+    <last_update_field/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -2528,8 +2510,81 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>656</yloc>
+      <xloc>976</xloc>
+      <yloc>576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Update</name>
+    <type>Update</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>salesDBConnection</connection>
+    <skip_lookup>N</skip_lookup>
+    <commit>100</commit>
+    <use_batch>N</use_batch>
+    <error_ignored>N</error_ignored>
+    <ignore_flag_field/>
+    <lookup>
+      <schema>public</schema>
+      <table>customer</table>
+      <key>
+        <name>Customer ID</name>
+        <field>customer_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>customer_name</name>
+        <rename>Customer Name</rename>
+      </value>
+      <value>
+        <name>segment</name>
+        <rename>Segment</rename>
+      </value>
+      <value>
+        <name>age</name>
+        <rename>Age</rename>
+      </value>
+      <value>
+        <name>city</name>
+        <rename>City</rename>
+      </value>
+      <value>
+        <name>state_name</name>
+        <rename>State</rename>
+      </value>
+      <value>
+        <name>postal_code</name>
+        <rename>Postal Code</rename>
+      </value>
+      <value>
+        <name>region</name>
+        <rename>Region</rename>
+      </value>
+      <value>
+        <name>country</name>
+        <rename>Country</rename>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1104</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
